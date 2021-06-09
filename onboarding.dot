@@ -1,19 +1,45 @@
 digraph G {
-  node [fontname = "Handlee"];
-  edge [fontname = "Handlee"];
+  graph [fontname = "DejaVu"];
+  node [fontname = "DejaVu",
+        shape=square,
+        fontsize=20];
+  edge [fontname = "DejaVu"];
 
+  bgcolor=transparent;
 
-  draw [ label = "Draw a picture" ];
-  win [ label = "You win!" ];
-  guess [ label = "Did they\nguess it?" ];
-  point [
-    label = "Point repeatedly\nto the same picture."
-  ];
+  start [shape=oval,
+         label="New employee onboarded"];
 
-  draw -> guess;
+  email_exists [shape=diamond,
+                label="Email address\nexists already?"]
 
-  guess -> win [ label = "Yes" ];
-  point -> guess;
-  guess -> point [ label = "No" ];
+  create_new_email [label="1a. Create new\nemail address\nwith new password"]
+  reset_password   [label="1b. Reset the\npassword of\nthe existing\naccount to\nobtain a new\npassword"]
+  deactivate_mfa [label="2. Deactivate MFA\nfor the account"]
+  hand_out_password [label="3. Hand out\nnew password\nto the new employee"]
+  set_password [label="4. Ask the\nnew employee\nto log in\nand set their\nown password"]
+  config_mfa [label="5. Ask the new\nemployee to\nconfigure their\nMFA settings"]
+  activate_mfa [label="6. Activate MFA\nfor the\nnew account"]
+  end [shape=Msquare,
+       label="Done",
+       fontsize=24];
+
+  start -> email_exists
+
+  email_exists -> create_new_email
+  email_exists -> reset_password
+
+  create_new_email -> deactivate_mfa
+  reset_password -> deactivate_mfa
+
+  deactivate_mfa -> hand_out_password
+
+  hand_out_password -> set_password
+
+  set_password -> config_mfa
+
+  config_mfa -> activate_mfa
+
+  activate_mfa -> end
 }
 
