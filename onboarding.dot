@@ -1,5 +1,5 @@
 digraph G {
-  node [fontname = "Roboto"];
+  node [fontname = "Handlee"];
   edge [fontname = "Roboto"];
 
 
