@@ -1,6 +1,6 @@
 digraph G {
   node [fontname = "Handlee"];
-  edge [fontname = "Roboto"];
+  edge [fontname = "Handlee"];
 
 
   draw [ label = "Draw a picture" ];
